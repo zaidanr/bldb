@@ -73,7 +73,7 @@
         // }
         xmlhttp.open("GET", "search.php?q=" + document.getElementById("mail").value, true);
         xmlhttp.send();
-        xmlhttp.onload(document.getElementById("out").innerHTML = xmlhttp.responseText);
+        xmlhttp.onload = function() { document.getElementById("out").innerHTML = xmlhttp.responseText; }
       }
       
     </script>
