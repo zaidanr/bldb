@@ -60,12 +60,13 @@
     <script>
       function search(){
         document.getElementById("spinner").style.visibility = "visible";
+        document.getElementById("spinner").style.visibility = "";
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", "search.php?q=" + document.getElementById("mail").value, true);
         xmlhttp.send();
         xmlhttp.onload = function() { 
           document.getElementById("out").innerHTML = xmlhttp.responseText; 
-          document.getElementById("spinner").style.visibility = "none";
+          document.getElementById("spinner").style.display = "none";
           }
       }
       
