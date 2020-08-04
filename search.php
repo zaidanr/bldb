@@ -21,7 +21,7 @@ if(isset($_GET['q'])){
                 // Bind param
                 $stmt = $stmt->bind_result($email, $user, $name, $hash);
                 if($stmt->num_rows < 1){
-                    echo "No record found :)"
+                    echo "No record found :)";
                 } else {
                     while ($stmt->fetch()){
                         echo "
