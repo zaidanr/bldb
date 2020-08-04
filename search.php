@@ -18,11 +18,9 @@ if(isset($_GET['q'])){
                     return;
                 }
                 $stmt->store_result();  
-                // Bind param
-                $stmt = $stmt->bind_result($email, $user, $name, $hash);
-                if($stmt->num_rows < 1) {
-                    echo "No record found :)";
-                } else {
+                if($stmt->num_rows >= 1) {
+                    // Bind param
+                    $stmt = $stmt->bind_result($email, $user, $name, $hash);
                     while ($stmt->fetch()){
                         echo "
                         <div class=\"table-responsive\">
@@ -40,7 +38,9 @@ if(isset($_GET['q'])){
                             <td>$hash</td>
                         </table>
                         </div>
-                        ";
+                        ";          
+                } else {
+                    echo "No record found :)";
                     };
                     
                 }
