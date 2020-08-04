@@ -61,6 +61,7 @@
       function search(){
         document.getElementById("spinner").style.visibility = "visible";
         document.getElementById("spinner").style.display = "";
+        document.getElementById("out").innerHTML = "";
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", "search.php?q=" + document.getElementById("mail").value, true);
         xmlhttp.send();
