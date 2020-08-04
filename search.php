@@ -10,6 +10,7 @@ if(isset($_GET['q'])){
 
     // Check if email valid
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
             if($stmt = $db->prepare($query)){
                 // Execute query
                 $stmt->bind_param("s", $email);
@@ -17,11 +18,12 @@ if(isset($_GET['q'])){
                     echo $stmt->error;
                     return;
                 }
-                $stmt->store_result();  
-                if($stmt->num_rows >= 1) {
+                $row = $stmt->store_result();
+                if($row->num_rows >= 1) {
                     // Bind param
                     $stmt = $stmt->bind_result($email, $user, $name, $hash);
-                    while ($stmt->fetch()){
+
+                    while ($stmt->fetch())  {
                         echo "
                         <div class=\"table-responsive\">
                         <table class=\"table table-bordered\">
@@ -40,12 +42,14 @@ if(isset($_GET['q'])){
                         </div>
                         ";
                     }
-                } 
+                } else {
+                    "No record found :)";
+                }
             } else {
                 echo "smt wrng";
             }
     } else {
-        echo "No record found :)";
+        echo "Mail not valid";
     }
 } else {
     header("Location: index.html");
