@@ -57,6 +57,9 @@ if (isset($_POST['email'])) {
             // prepare failed
             echo "Prep fail";
         }
+    } else {
+        // Email invalid
+        echo "Invalid mail"
     }
 }
 
