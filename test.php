@@ -7,7 +7,7 @@ $query = "SELECT email, username, name, hash  FROM bukalapak WHERE email = ?";
 
 if(isset($_GET['q'])){
     $email = htmlspecialchars(trim($_GET['q']));
-    echo var_dump($email);
+
     // Check if email valid
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
