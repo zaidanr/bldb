@@ -46,7 +46,7 @@ if(isset($_GET['q'])){
                 }
 
             }
-        } else { echo "Email invalid"}
+        } else { echo "Email invalid"; }
 } else {
     header("Location: index.html");
 }
