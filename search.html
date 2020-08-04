@@ -40,7 +40,7 @@
     <h1 class="my-4">Lupabapak Leak</h1>
     <hr>
 
-    <form action="search.php">
+    <form action="#" onsubmit="search()">
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Enter your mail address" id="mail" name="email">
         <div class="input-group-append">
@@ -63,7 +63,7 @@
         document.getElementById("spinner").style.display = "";
         document.getElementById("out").innerHTML = "";
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "search.php?q=" + document.getElementById("mail").value, true);
+        xmlhttp.open("GET", "search.php?email=" + document.getElementById("mail").value, true);
         xmlhttp.send();
         xmlhttp.onload = function() { 
           document.getElementById("out").innerHTML = xmlhttp.responseText; 
