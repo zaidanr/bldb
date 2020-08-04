@@ -59,7 +59,7 @@ if (isset($_POST['email'])) {
         }
     } else {
         // Email invalid
-        echo "Invalid mail"
+        echo "Invalid mail";
     }
 }
 
@@ -119,6 +119,9 @@ if (isset($_GET['q'])) {
             // prepare failed
             echo "Prep fail";
         }
+    } else {
+        // Email invalid
+        echo "Invalid mail";
     }
 } else {
     // q string not set
