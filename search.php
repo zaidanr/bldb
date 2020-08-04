@@ -20,7 +20,7 @@ if(isset($_GET['q'])){
                 $stmt->store_result();  
                 // Bind param
                 $stmt = $stmt->bind_result($email, $user, $name, $hash);
-                if($stmt->num_rows < 1){
+                if($stmt->num_rows < 1) {
                     echo "No record found :)";
                 } else {
                     while ($stmt->fetch()){
@@ -40,8 +40,8 @@ if(isset($_GET['q'])){
                             <td>$hash</td>
                         </table>
                         </div>
-                        "
-                    }
+                        ";
+                    };
                     
                 }
 
