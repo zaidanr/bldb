@@ -8,7 +8,7 @@ if (isset($_GET['q'])) {
     $param_email = htmlspecialchars(trim($_GET['q']));
 
     // Validate email
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (filter_var($param_email, FILTER_VALIDATE_EMAIL)) {
 
         // Attempt to prepare query
         if ($stmt = $db->prepare($query)) {
