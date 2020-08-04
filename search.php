@@ -38,15 +38,15 @@ if(isset($_GET['q'])){
                             <td>$hash</td>
                         </table>
                         </div>
-                        ";          
-                } else {
-                    echo "No record found :)";
-                    };
-                    
-                }
-
+                        ";
+                    }
+                } 
+            } else {
+                echo "smt wrng";
             }
-        } else { echo "Email invalid"; }
+    } else {
+        echo "No record found :)";
+    }
 } else {
     header("Location: index.html");
 }
