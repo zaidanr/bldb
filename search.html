@@ -42,22 +42,16 @@
 
     <form action="search.php">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Enter your mail address" id="mail">
+        <input type="text" class="form-control" placeholder="Enter your mail address" id="mail" name="email">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" onclick="search()">Submit</button>
        </div>
       </div>
     </form>
+
+    <img src="spinner-1s-200px.gif" id="spinner" hidden>
     
     <a id="out"></a>
-
-	  <div class="table-responsive">
-    <table class="table table-bordered hidden" id>
-        </thead>
-        <tbody>
-		    </tbody>
-	  </table>
-	</div>
 
   </div>
 
@@ -65,20 +59,19 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>
       function search(){
+        document.getElementById("spinner").style.visibility = "visible";
         var xmlhttp = new XMLHttpRequest();
-        // xmlhttp.onreadystatechange = function() {
-        //   if (this.readyState == 4 && this.status == 200){
-        //     document.getElementById("out").innerHTML = this.responseText;
-        //   }
-        // }
         xmlhttp.open("GET", "search.php?q=" + document.getElementById("mail").value, true);
         xmlhttp.send();
-        xmlhttp.onload = function() { document.getElementById("out").innerHTML = xmlhttp.responseText; }
+        xmlhttp.onload = function() { 
+          document.getElementById("out").innerHTML = xmlhttp.responseText; 
+          document.getElementById("spinner").style.visibility = "hidden";
+          }
       }
       
     </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
