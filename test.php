@@ -1,29 +1,33 @@
 <?php 
 include("config.php");
 
-
-
 $query = "SELECT email, username, name, hash  FROM bukalapak WHERE email = ?";
 
-if(isset($_GET['q'])){
-    $email = htmlspecialchars(trim($_GET['q']));
+// Check q string
+if (isset($_GET['q'])) {
+    $param_email = htmlspecialchars(trim($_GET['q']));
 
-    // Check if email valid
+    // Validate email
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-            if($stmt = $db->prepare($query)){
-                // Execute query
-                $stmt->bind_param("s", $email);
-                if(!$stmt->execute()){
-                    echo $stmt->error;
-                    return;
-                }
-                $row = $stmt->store_result();
-                if($row->num_rows >= 1) {
-                    // Bind param
-                    $stmt = $stmt->bind_result($email, $user, $name, $hash);
+        // Attempt to prepare query
+        if ($stmt = $db->prepare($query)) {
 
-                    while ($stmt->fetch())  {
+            // Bind param
+            $stmt->bind_param('s', $param_email);
+
+            // Attempt to execute query
+            if ($stmt->execute()) {
+                
+                // Store result
+                $stmt->store_result();
+                
+                // Check if email exist
+                if ($stmt->num_rows >= 1) {
+
+                    // Bind result
+                    $stmt->bind_result($email, $user, $name, $hash);
+                    while ($stmt->fetch()){
                         echo "
                         <div class=\"table-responsive\">
                         <table class=\"table table-bordered\">
@@ -43,16 +47,22 @@ if(isset($_GET['q'])){
                         ";
                     }
                 } else {
-                    "No record found :)";
+                    // Email address not exist
+                    echo "Record not found :)";
                 }
             } else {
-                echo "smt wrng";
+                // Execute fail
+                echo $stmt->error;
             }
-    } else {
-        echo "Mail not valid";
+        } else {
+            // prepare failed
+            echo "Prep fail";
+        }
     }
 } else {
+    // q string not set
     header("Location: index.html");
 }
+
 
 ?>
