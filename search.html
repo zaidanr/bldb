@@ -44,7 +44,7 @@
       <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Enter your mail address" id="mail" name="email">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" onclick="" data-sitekey="6LfrxroZAAAAAKTPKdAzIRf_NcYKVDZ_MQvOXpyg" data-action="submit" data-callback="search">Submit</button>
+          <button class="btn btn-outline-secondary" type="button" onclick="search" data-sitekey="6LfrxroZAAAAAKTPKdAzIRf_NcYKVDZ_MQvOXpyg" data-action="submit" data-callback="onSubmit">Submit</button>
        </div>
       </div>
     </form>
@@ -57,13 +57,13 @@
 
     <script>
 
-      // // ReCAPTCHA 
-      // function onSubmit(token) {
-      //   document.getElementById("mail").submit();
+      // ReCAPTCHA 
+      function onSubmit(token) {
+        document.getElementById("mail").submit();
 
-      //   // search
-      //   search();
-      // }
+        // search
+        // search();
+      }
       
       // Search XHR
       function search() {
@@ -73,7 +73,7 @@
         document.getElementById("out").innerHTML = "";
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("GET", "search.php?email=" + document.getElementById("mail").value, true);
-        xmlhttp.send();
+        xmlhttp.send(); 
         xmlhttp.onload = function() { 
           document.getElementById("out").innerHTML = xmlhttp.responseText; 
           document.getElementById("spinner").style.display = "none";
